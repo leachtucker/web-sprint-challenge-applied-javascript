@@ -45,7 +45,9 @@ axios.get('https://lambda-times-api.herokuapp.com/articles')
         appendCards(allArticles);
     })
     .catch(err => {
-        console.log(`There has been an error requesting the articles: ${err}`);
+        const errorsContainer = document.querySelector('div.errors-container');
+        const newErrorModal = errorModalMaker(err);
+        errorsContainer.append(newErrorModal);
     });
 
 // This function creates cards using the cardMaker component and then appends them to the DOM with data from an array of articles objects.
@@ -92,4 +94,30 @@ function cardMaker(article) {
 
     // Return created div.card element
     return card;
+}
+
+// Stetch -- ERROR MODAL <<<<<<<<<<<<<<<<<<<<<<<<<<<<=================
+
+/* <div class="modal-window">
+    <p class="error-msg">AYYYY</p>
+</div> */
+
+function errorModalMaker(error) {
+    // Set up parent element
+    const modal = document.createElement('div');
+    modal.classList.add('modal-window');
+
+    const h3 = document.createElement('h3');
+    h3.textContent = "An error has occured fetching article data!"
+
+    // Set up child element(s)
+    const errorMsg = document.createElement('p');
+    errorMsg.classList.add('error-msg');
+    errorMsg.textContent = error;
+
+    // Append child element(s)
+    modal.append(h3, errorMsg);
+
+    // Return the created modal
+    return modal;
 }
