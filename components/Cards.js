@@ -102,6 +102,7 @@ function cardMaker(article) {
     <p class="error-msg">AYYYY</p>
 </div> */
 
+// Component
 function errorModalMaker(error) {
     // Set up parent element
     const modal = document.createElement('div');
