@@ -18,7 +18,6 @@ const container = document.querySelector('div.header-container');
 const newHeader = Header();
 container.append(newHeader);
 
-
 // Component
 function Header() {
     // Set up parent element
