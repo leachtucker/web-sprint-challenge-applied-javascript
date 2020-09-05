@@ -9,3 +9,29 @@
 //    <div class="tab">topic here</div>
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
+
+// IMPORT -- Installed axios with NPM so that I could see the typing suggestions in VSCode
+import axios from 'axios';
+
+// Axios GET
+axios.get('https://lambda-times-api.herokuapp.com/topics')
+    .then(response => {
+        const tabsContainer = document.querySelector('div.topics');
+        response.data.topics.forEach(topic => {
+            const newTab = tabMaker(topic);
+            tabsContainer.append(newTab);
+        });
+    })
+    .catch(err => {
+        console.log(`There has been an error requesting the topics: ${err}`);
+    });
+
+// Component
+function tabMaker(content) {
+    const tab = document.createElement('div');
+    tab.classList.add('tab');
+    tab.textContent = content;
+
+    // Return the created tab
+    return tab;
+}
